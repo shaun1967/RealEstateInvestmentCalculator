@@ -1,0 +1,134 @@
+Private Sub calBtn_Click()
+
+'If the textbox is empty go to next calculation
+On Error Resume Next
+
+'Operating Expense Ratio
+labResOer = tbToe / labResGoi
+'Send OER infor the sheet
+Sheets("Real Estate Investment Report").Range("B24") = labResOer
+labResOer.TextAlign = Format(Val(labResOer.TextAlign), "#.##")
+
+
+
+'If the textbox is empty go to next calculation
+On Error Resume Next
+
+'Net Operating Income
+labResNoi = labResGoi - tbOe
+Sheets("Real Estate Investment Report").Range("B22") = labResNoi
+labResNoi.TextAlign = Format(Val(labResNoi.TextAlign), "#.##")
+
+'If the textbox is empty go to next calculation
+On Error Resume Next
+
+'Debt Service Ratio
+labResDsr = labResNoi / tbDs
+Sheets("Real Estate Investment Report").Range("B20") = labResDsr
+labResDsr.TextAlign = Format(Val(labResDsr.TextAlign), "#.##")
+
+
+'If the textbox is empty go to next calculation
+On Error Resume Next
+
+'Net Income Multiplier
+labResNim = tbFmv / labResNoi
+Sheets("Real Estate Investment Report").Range("B2") = labResNim
+labResNim.TextAlign = Format(Val(labResNim.TextAlign), "#.##")
+
+
+'If the textbox is empty go to next calculation
+On Error Resume Next
+
+'Gross Rent Multiplier
+labResGrm = tbFmv / labResGpi
+Sheets("Real Estate Investment Report").Range("B4") = labResGrm
+labResGrm.TextAlign = Format(Val(labResGrm.TextAlign), "#.##")
+
+
+'If the textbox is empty go to next calculation
+On Error Resume Next
+
+'Gross Benifit Multiplier
+labResGbm = tbFmv / (labResGpi + (tbApr * tbFmv))
+Sheets("Real Estate Investment Report").Range("B6") = labResGbm
+labResGbm.TextAlign = Format(Val(labResGbm.TextAlign), "#.##")
+
+
+'If the textbox is empty go to next calculation
+On Error Resume Next
+
+'Gross Potential Income
+labResGpi = ((tbMr * tbUnt) * 12)
+Sheets("Real Estate Investment Report").Range("B8") = labResGpi
+labResGpi.TextAlign = Format(Val(labResGpi.TextAlign), "#")
+
+
+'If the textbox is empty go to next calculation
+On Error Resume Next
+
+'Gross Operating Income
+labResGoi = labResGpi - (labResGpi * labResVacl)
+Sheets("Real Estate Investment Report").Range("B10") = labResGoi
+labResGoi.TextAlign = Format(Val(labResGoi.TextAlign), "#.##")
+
+
+'If the textbox is empty go to next calculation
+On Error Resume Next
+Me.labResGoi = ""
+
+'Break-Even Ratio
+labResBer = (tbOe + tbDs) / labResGoi
+Sheets("Real Estate Investment Report").Range("B12") = labResBer
+labResBer.TextAlign = Format(Val(labResBer.TextAlign), "#.##")
+
+
+'If the textbox is empty go to next calculation
+On Error Resume Next
+
+'Equity
+labResE = tbFmv - tbMpo - tbL - tbOd
+Sheets("Real Estate Investment Report").Range("B18") = labResE
+labResE.TextAlign = Format(Val(labResE.TextAlign), "#.##")
+
+
+'If the textbox is empty go to next calculation
+On Error Resume Next
+
+'Future Value
+labResFv = tbPv * (1 + tbI)
+Sheets("Real Estate Investment Report").Range("B14") = labResFv
+labResFv.TextAlign = Format(Val(labResFv.TextAlign), "#.##")
+
+'Percentage of Vacancy and Credit Loss
+labResVacl = (labResVacl * tbCl)
+labResVacl.TextAlign = Format(Val(labResVacl.TextAlign), "#.##")
+
+End Sub
+
+Private Sub clBtn_Click()
+'Clears the form
+    labResVacl = ""
+    labResFv = ""
+    labResE = ""
+    labResBer = ""
+    labResGoi = ""
+    labResGpi = ""
+    labResGbm = ""
+    labResGrm = ""
+    labResNim = ""
+    labResDsr = ""
+    labResNoi = ""
+    labResOer = ""
+    tbOe = ""
+    tbToe = ""
+    tbMr = ""
+    tbUnt = ""
+    tbOd = ""
+    tbCl = ""
+    tbDs = ""
+    tbFmv = ""
+    tbMpo = ""
+    tbL = ""
+    tbApr = ""
+End Sub
